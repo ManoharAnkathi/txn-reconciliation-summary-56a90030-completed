@@ -14,6 +14,9 @@ def load_transactions(csv_path: str) -> pd.DataFrame:
         raise ValueError("missing required columns")
 
     df["status"] = df["status"]
+    df['txn_date']=pd.to_datetime(df['txn_date'])
+    df['amount']=pd.to_numeric(df['amount'])
+    df["amount"]=df["amount"].fillna(0)
     return df
 
 
